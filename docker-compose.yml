@@ -1,0 +1,14 @@
+services:
+  runner:
+    build: .
+    container_name: edunexa-runner
+    ports:
+      - "8001:8001"
+    volumes:
+      # Give access to host Docker daemon to spawn containers
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Mount current directory if you want to edit files live
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
